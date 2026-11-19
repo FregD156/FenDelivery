@@ -39,11 +39,11 @@
 
 ## Giai đoạn 2 — Khung giao diện (chưa 3D)
 
-- [ ] Layout chung: Header sticky, Footer, thanh nổi mobile (Gọi · Zalo · Báo giá)
-- [ ] Dựng đủ 13 section ở dạng tĩnh với nội dung mẫu
-- [ ] Responsive: 360px, 768px, 1280px, 1920px
-- [ ] Component dùng chung: Button, Card, Section, Heading, Accordion
-- [ ] Menu mobile
+- [x] Layout chung: Header sticky, Footer, thanh nổi mobile (Gọi · Zalo · Báo giá)
+- [x] Dựng đủ 13 section ở dạng tĩnh với nội dung mẫu (Loading screen sẽ gắn ở Giai đoạn 4)
+- [x] Responsive: 360px, 768px, 1280px, 1920px
+- [x] Component dùng chung: Button, Card, Section, Heading, Accordion
+- [x] Menu mobile
 
 **Xong khi**: cuộn hết trang thấy đủ nội dung, đẹp ở mọi cỡ màn hình, chưa cần hiệu ứng.
 
