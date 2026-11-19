@@ -51,13 +51,13 @@
 
 ## Giai đoạn 3 — Chức năng cốt lõi
 
-- [ ] Form báo giá: kiểm tra dữ liệu (Zod), định dạng số điện thoại VN
-- [ ] Tải ảnh lên (giới hạn số lượng và dung lượng)
-- [ ] API nhận đơn → gửi về kênh đã chọn (email / Telegram / Zalo / Sheet)
-- [ ] Chống spam (honeypot + giới hạn tần suất, cân nhắc Turnstile)
-- [ ] Công cụ ước tính giá 3 bước, đọc từ file cấu hình giá mẫu
-- [ ] Nút Gọi / Zalo hoạt động trên mobile
-- [ ] Thông báo thành công / lỗi
+- [x] Form báo giá: kiểm tra dữ liệu (Zod), định dạng số điện thoại VN
+- [x] Tải ảnh lên (giới hạn số lượng và dung lượng)
+- [x] API nhận đơn → gửi về kênh đã chọn (đã tích hợp sẵn adapter Telegram Bot & Resend Email + chế độ demo local)
+- [x] Chống spam (honeypot + giới hạn tần suất theo IP)
+- [x] Công cụ ước tính giá 3 bước, đọc từ file cấu hình giá mẫu
+- [x] Nút Gọi / Zalo hoạt động trên mobile
+- [x] Thông báo thành công / lỗi
 
 **Xong khi**: gửi form thử thì chủ dự án nhận được đơn.
 
