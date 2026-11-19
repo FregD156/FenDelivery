@@ -1,0 +1,26 @@
+# Local reference/skill repos
+impeccable/
+taste-skill/
+
+# OS & Editor
+.DS_Store
+.vscode/
+.idea/
+
+# Dependencies & Build
+node_modules/
+dist/
+build/
+.next/
+out/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
