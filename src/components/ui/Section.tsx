@@ -4,9 +4,15 @@ import { cn } from "@/lib/utils";
 interface SectionProps extends HTMLAttributes<HTMLElement> {
   id?: string;
   children: ReactNode;
-  surface?: "bg-0" | "bg-1";
+  surface?: "bg-0" | "bg-1" | "transparent";
   compact?: boolean;
 }
+
+const surfaceClasses = {
+  "bg-0": "bg-bg-0/78",
+  "bg-1": "bg-bg-1/84",
+  transparent: "bg-transparent",
+};
 
 export function Section({
   id,
@@ -21,7 +27,7 @@ export function Section({
       id={id}
       className={cn(
         "relative w-full scroll-mt-24",
-        surface === "bg-1" ? "bg-bg-1" : "bg-bg-0",
+        surfaceClasses[surface],
         compact ? "py-14 sm:py-20" : "py-20 sm:py-28 lg:py-36",
         className
       )}

@@ -82,15 +82,15 @@
 
 ## Giai đoạn 5 — Cảnh 3D
 
-- [ ] Thiết lập Canvas, ánh sáng, môi trường, nền tối
-- [ ] Dựng vật thể procedural: ghế xoay, bàn, tủ hồ sơ, kệ, thùng, xe tải
-- [ ] Vật liệu: kim loại xám, gỗ tối, viền sáng champagne
-- [ ] Cảnh Hero: ghế xoay + vật thể trôi nổi + phản ứng chuột
-- [ ] Camera chạy theo tiến độ cuộn qua các section
-- [ ] Cảnh Quy trình: tháo rời → đóng thùng → xe tải
-- [ ] Hậu kỳ nhẹ: bloom, vignette, grain
-- [ ] Hạt bụi / ánh sáng khí quyển nhẹ
-- [ ] Tải cảnh 3D theo kiểu lười, không chặn nội dung
+- [x] Thiết lập Canvas, ánh sáng, môi trường, nền tối
+- [x] Dựng vật thể procedural: ghế xoay, bàn, tủ hồ sơ, kệ, thùng, xe tải
+- [x] Vật liệu: kim loại xám, gỗ tối, viền sáng champagne
+- [x] Cảnh Hero: ghế xoay + vật thể trôi nổi + phản ứng chuột
+- [x] Camera chạy theo tiến độ cuộn qua các section
+- [x] Cảnh Quy trình: tháo rời → đóng thùng → xe tải
+- [x] Hậu kỳ nhẹ: bloom, vignette, grain
+- [x] Hạt bụi / ánh sáng khí quyển nhẹ
+- [x] Tải cảnh 3D theo kiểu lười, không chặn nội dung
 
 **Xong khi**: Hero và Quy trình có 3D chạy mượt trên desktop.
 

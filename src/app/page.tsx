@@ -14,15 +14,17 @@ import { ServicesSection } from "@/components/sections/ServicesSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { TrustBarSection } from "@/components/sections/TrustBarSection";
 import { WhyUsSection } from "@/components/sections/WhyUsSection";
+import { SceneLoader } from "@/components/three/SceneLoader";
 
 export default function HomePage() {
   return (
     <>
+      <SceneLoader />
       <SmoothScroll />
       <LoadingScreen />
       <CustomCursor />
       <Header />
-      <main>
+      <main className="relative z-10">
         <HeroSection />
         <TrustBarSection />
         <ServicesSection />
@@ -34,7 +36,9 @@ export default function HomePage() {
         <FaqSection />
         <ContactSection />
       </main>
-      <Footer />
+      <div className="relative z-10">
+        <Footer />
+      </div>
       <FloatingContactBar />
     </>
   );

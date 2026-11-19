@@ -5,7 +5,7 @@ export function TrustBarSection() {
   return (
     <section
       aria-label="Chỉ số tin cậy"
-      className="border-y border-line bg-bg-1 py-10 sm:py-14"
+      className="relative border-y border-line bg-bg-1/88 py-10 backdrop-blur-md sm:py-14"
     >
       <div className="mx-auto max-w-[var(--container-max)] px-5 sm:px-8 lg:px-10">
         <div className="grid grid-cols-2 gap-6 sm:gap-8 lg:grid-cols-4">

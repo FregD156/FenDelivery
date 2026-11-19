@@ -1,37 +1,67 @@
+"use client";
+
 import { processData } from "@/data/process";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import { Card } from "@/components/ui/Card";
 import { Heading } from "@/components/ui/Heading";
 import { Section } from "@/components/ui/Section";
+import { useSceneStore } from "@/store/useSceneStore";
+import { cn } from "@/lib/utils";
+
+const STORY_PHASES = [
+  { label: "Thu mua & thẩm định", threshold: 0.3 },
+  { label: "Tháo rời & đóng thùng", threshold: 0.42 },
+  { label: "Xe tải vận chuyển", threshold: 0.52 },
+] as const;
 
 export function ProcessSection() {
+  const scrollProgress = useSceneStore((s) => s.scrollProgress);
+
   return (
-    <Section id="quy-trinh" surface="bg-1">
+    <Section id="quy-trinh" surface="transparent" className="border-y border-line/60 bg-bg-1/55">
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-12">
-        {/* Left Sticky Overview & Future 3D Stage */}
+        {/* Left Sticky Overview & Live 3D Story Indicator */}
         <div className="lg:sticky lg:top-28 lg:col-span-5 lg:self-start">
           <Heading
             eyebrow="Quy trình 5 bước"
             title="Nhanh gọn từ lúc gửi ảnh đến khi bàn giao mặt bằng"
-            description="Toàn bộ quá trình tháo dỡ, đóng gói và vận chuyển được đội ngũ Fen Delivery thực hiện trọn gói."
+            description="Cuộn xuống để theo dõi từng bước tháo dỡ, đóng gói và vận chuyển trọn gói của đội ngũ Fen Delivery."
             className="mb-8"
           />
 
           <Card variant="glass" padding="md" className="hidden lg:block">
-            <p className="text-xs tracking-[0.2em] text-accent uppercase">
-              Cảnh 3D theo tiến độ cuộn
-            </p>
-            <p className="mt-3 text-sm leading-relaxed text-text-1">
-              Ở Giai đoạn 5, khung này liên kết trực tiếp với cảnh 3D: nội thất tháo rời từng khối,
-              đóng thùng và xếp gọn lên xe tải theo từng bước cuộn.
-            </p>
-            <div className="mt-6 flex items-center gap-2">
-              {processData.map((item) => (
-                <span
-                  key={item.step}
-                  className="h-1 flex-1 rounded-full bg-line first:bg-accent"
-                />
-              ))}
+            <div className="flex items-center justify-between text-xs">
+              <span className="tracking-[0.2em] text-accent uppercase">Trạng thái cảnh 3D</span>
+              <span className="tabular-nums text-text-2">
+                {Math.round(scrollProgress * 100)}%
+              </span>
+            </div>
+
+            <div className="mt-5 space-y-2.5">
+              {STORY_PHASES.map((phase, idx) => {
+                const isActive = scrollProgress >= phase.threshold;
+                return (
+                  <div
+                    key={phase.label}
+                    className={cn(
+                      "flex items-center justify-between rounded-xl border px-3.5 py-2.5 text-xs transition-colors duration-300",
+                      isActive
+                        ? "border-accent/50 bg-accent-soft text-text-0"
+                        : "border-line/70 bg-bg-0/40 text-text-2"
+                    )}
+                  >
+                    <span>
+                      0{idx + 1}. {phase.label}
+                    </span>
+                    <span
+                      className={cn(
+                        "h-1.5 w-1.5 rounded-full",
+                        isActive ? "bg-accent" : "bg-line"
+                      )}
+                    />
+                  </div>
+                );
+              })}
             </div>
           </Card>
         </div>
@@ -41,9 +71,9 @@ export function ProcessSection() {
           {processData.map((item) => (
             <div key={item.step}>
               <Card
-                variant="outline"
+                variant="glass"
                 padding="md"
-                className="flex flex-col gap-4 hover:border-accent/40 sm:flex-row sm:items-start sm:gap-6"
+                className="flex flex-col gap-4 hover:border-accent/45 sm:flex-row sm:items-start sm:gap-6"
               >
                 <span className="font-display text-2xl font-semibold text-accent sm:text-3xl">
                   {item.step}
