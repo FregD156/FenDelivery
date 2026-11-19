@@ -5,6 +5,7 @@ import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { AtmosphericDust } from "@/components/three/effects/AtmosphericDust";
 import { PostEffects } from "@/components/three/effects/PostEffects";
+import type { QualityTier } from "@/components/three/hooks/useWebGLSupport";
 import {
   BookshelfProp,
   DeliveryTruck,
@@ -18,9 +19,11 @@ import { useSceneStore } from "@/store/useSceneStore";
 
 interface SceneContentProps {
   isMobile: boolean;
+  tier: QualityTier;
+  enablePostEffects: boolean;
 }
 
-export function SceneContent({ isMobile }: SceneContentProps) {
+export function SceneContent({ isMobile, tier, enablePostEffects }: SceneContentProps) {
   const hoveredServiceKey = useSceneStore((s) => s.hoveredServiceKey);
 
   const materials = useMemo(() => createFenMaterials(), []);
@@ -92,6 +95,7 @@ export function SceneContent({ isMobile }: SceneContentProps) {
   });
 
   const heroOffsetX = isMobile ? 0 : 1.55;
+  const dustCount = tier === "low" ? 50 : isMobile ? 95 : 150;
 
   return (
     <>
@@ -145,13 +149,15 @@ export function SceneContent({ isMobile }: SceneContentProps) {
           highlighted={hoveredServiceKey === "cabinet" || hoveredServiceKey === "appliance"}
         />
 
-        <BookshelfProp
-          materials={materials}
-          position={[-1.4, -0.15, -2.55]}
-          rotation={[0.04, 0.35, 0.06]}
-          scale={0.68}
-          highlighted={hoveredServiceKey === "shelf" || hoveredServiceKey === "custom"}
-        />
+        {tier !== "low" && (
+          <BookshelfProp
+            materials={materials}
+            position={[-1.4, -0.15, -2.55]}
+            rotation={[0.04, 0.35, 0.06]}
+            scale={0.68}
+            highlighted={hoveredServiceKey === "shelf" || hoveredServiceKey === "custom"}
+          />
+        )}
 
         <ShippingCrates materials={materials} packProgressRef={packProgressRef} />
       </group>
@@ -159,9 +165,9 @@ export function SceneContent({ isMobile }: SceneContentProps) {
       {/* Scroll-Driven Fen Delivery Truck */}
       <DeliveryTruck materials={materials} truckProgressRef={truckProgressRef} />
 
-      {/* Subtle Champagne Dust & Post-Processing */}
-      <AtmosphericDust count={isMobile ? 95 : 150} />
-      <PostEffects isMobile={isMobile} />
+      {/* Subtle Champagne Dust & Adaptive Post-Processing */}
+      <AtmosphericDust count={dustCount} />
+      {enablePostEffects && <PostEffects isMobile={isMobile} />}
     </>
   );
 }
