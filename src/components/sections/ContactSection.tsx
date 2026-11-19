@@ -19,6 +19,7 @@ import {
 import { servicesData } from "@/data/services";
 import { siteConfig } from "@/data/site";
 import { trackEvent } from "@/lib/analytics";
+import { compressQuoteImage } from "@/lib/imageCompress";
 import {
   ALLOWED_IMAGE_TYPES,
   MAX_IMAGE_SIZE_MB,
@@ -101,11 +102,12 @@ export function ContactSection() {
     };
   }, [images]);
 
-  const handleImageSelect = (fileList: FileList | null) => {
+  const handleImageSelect = async (fileList: FileList | null) => {
     if (!fileList || fileList.length === 0) return;
     setImageError(null);
 
-    const incoming = Array.from(fileList);
+    const incomingRaw = Array.from(fileList);
+    const incoming = await Promise.all(incomingRaw.map((file) => compressQuoteImage(file)));
     const combinedFiles = [...images.map((i) => i.file), ...incoming];
     const validation = validateQuoteImages(combinedFiles);
 

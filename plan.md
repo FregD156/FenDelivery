@@ -98,12 +98,12 @@
 
 ## Giai đoạn 6 — Tối ưu mobile và hiệu năng
 
-- [ ] Phát hiện thiết bị, giảm chất lượng 3D tự động (số vật thể, DPR, hậu kỳ)
-- [ ] Bản dự phòng khi không có WebGL hoặc thiết bị yếu
-- [ ] Nén ảnh, tối ưu font, tách mã (code splitting)
-- [ ] Đo Lighthouse mobile và desktop, sửa đến khi đạt mục tiêu ở `detail.md` mục 10
-- [ ] Kiểm thử thiết bị thật: iPhone, Android tầm trung, laptop yếu
-- [ ] Kiểm thử trình duyệt: Chrome, Safari, Firefox, Edge
+- [x] Phát hiện thiết bị, giảm chất lượng 3D tự động (số vật thể, DPR, hậu kỳ, PerformanceMonitor)
+- [x] Bản dự phòng khi không có WebGL hoặc thiết bị yếu (ErrorBoundary + webglcontextlost + software renderer check)
+- [x] Nén ảnh, tối ưu font, tách mã (code splitting, idle-deferred 3D mount, optimizePackageImports, nén ảnh client trước khi upload)
+- [ ] Đo Lighthouse mobile và desktop, sửa đến khi đạt mục tiêu ở `detail.md` mục 10 (kiểm tra trên bản production/deploy)
+- [ ] Kiểm thử thiết bị thật: iPhone, Android tầm trung, laptop yếu (cần kiểm thử trực tiếp trên máy thật)
+- [ ] Kiểm thử trình duyệt: Chrome, Safari, Firefox, Edge (cần kiểm thử trực tiếp)
 
 **Xong khi**: đạt ngân sách hiệu năng, mobile cuộn mượt.
 
