@@ -1,0 +1,36 @@
+:root {
+  /* Surface & Background */
+  --bg-0: #0a0a0b;
+  --bg-1: #111113;
+  --bg-2: #1a1a1d;
+  --line: #2a2a2e;
+
+  /* Typography */
+  --text-0: #f4f4f5;
+  --text-1: #a1a1aa;
+  --text-2: #6b6b73;
+
+  /* Brand Accent (Champagne) */
+  --accent: #c8b28a;
+  --accent-soft: #c8b28a22;
+
+  /* Glassmorphism */
+  --glass-bg: rgba(26, 26, 29, 0.6);
+  --glass-border: rgba(244, 244, 245, 0.08);
+
+  /* Radii */
+  --radius-card: 20px;
+  --radius-card-lg: 24px;
+  --radius-pill: 9999px;
+
+  /* Layout */
+  --container-max: 1280px;
+  --section-py-mobile: 72px;
+  --section-py-desktop: 144px;
+
+  /* Motion */
+  --duration-fast: 0.3s;
+  --duration-base: 0.7s;
+  --duration-slow: 1.1s;
+  --ease-luxury: cubic-bezier(0.22, 1, 0.36, 1);
+}
