@@ -111,12 +111,12 @@
 
 ## Giai đoạn 7 — SEO, theo dõi và hoàn thiện
 
-- [ ] Title, meta, Open Graph, ảnh chia sẻ
-- [ ] Dữ liệu có cấu trúc LocalBusiness + FAQPage
-- [ ] Sitemap, robots, favicon
-- [ ] Google Analytics 4, theo dõi sự kiện: bấm Gọi, bấm Zalo, gửi form, dùng công cụ ước tính
-- [ ] Kiểm tra truy cập: bàn phím, tương phản, alt text
-- [ ] Rà soát toàn bộ placeholder còn sót
+- [x] Title, meta, Open Graph, ảnh chia sẻ
+- [x] Dữ liệu có cấu trúc LocalBusiness + FAQPage
+- [x] Sitemap, robots, favicon
+- [x] Google Analytics 4, theo dõi sự kiện: bấm Gọi, bấm Zalo, gửi form, dùng công cụ ước tính
+- [x] Kiểm tra truy cập: bàn phím, tương phản, alt text
+- [x] Rà soát toàn bộ placeholder còn sót (tập trung toàn bộ trong `src/data/` với `TODO(content)`)
 
 **Xong khi**: toàn bộ checklist chất lượng đạt.
 

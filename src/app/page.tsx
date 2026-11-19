@@ -24,7 +24,7 @@ export default function HomePage() {
       <LoadingScreen />
       <CustomCursor />
       <Header />
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10">
         <HeroSection />
         <TrustBarSection />
         <ServicesSection />
