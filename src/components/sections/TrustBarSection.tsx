@@ -1,4 +1,5 @@
 import { siteConfig } from "@/data/site";
+import { AnimatedCounter } from "@/components/motion/AnimatedCounter";
 
 export function TrustBarSection() {
   return (
@@ -14,8 +15,7 @@ export function TrustBarSection() {
               className="flex flex-col border-l border-line/80 pl-5 first:border-l-0 first:pl-0 lg:first:border-l lg:first:pl-5"
             >
               <p className="font-display text-3xl font-semibold tracking-tight text-text-0 sm:text-4xl">
-                <span className="text-accent">{metric.value}</span>
-                <span>{metric.suffix}</span>
+                <AnimatedCounter value={metric.value} suffix={metric.suffix} />
               </p>
               <p className="mt-1.5 text-xs text-text-1 sm:text-sm">{metric.label}</p>
             </div>

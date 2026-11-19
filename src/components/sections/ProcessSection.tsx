@@ -1,4 +1,5 @@
 import { processData } from "@/data/process";
+import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import { Card } from "@/components/ui/Card";
 import { Heading } from "@/components/ui/Heading";
 import { Section } from "@/components/ui/Section";
@@ -36,9 +37,9 @@ export function ProcessSection() {
         </div>
 
         {/* Right 5 Steps */}
-        <ol className="space-y-4 lg:col-span-7">
+        <ScrollReveal staggerChildren className="space-y-4 lg:col-span-7">
           {processData.map((item) => (
-            <li key={item.step}>
+            <div key={item.step}>
               <Card
                 variant="outline"
                 padding="md"
@@ -56,9 +57,9 @@ export function ProcessSection() {
                   </p>
                 </div>
               </Card>
-            </li>
+            </div>
           ))}
-        </ol>
+        </ScrollReveal>
       </div>
     </Section>
   );

@@ -1,3 +1,4 @@
+import { TextReveal } from "@/components/motion/TextReveal";
 import { cn } from "@/lib/utils";
 
 interface HeadingProps {
@@ -28,9 +29,11 @@ export function Heading({
           {eyebrow}
         </p>
       )}
-      <h2 className="font-display text-3xl leading-[1.15] font-semibold tracking-tight text-text-0 sm:text-4xl lg:text-5xl">
-        {title}
-      </h2>
+      <TextReveal
+        as="h2"
+        text={title}
+        className="font-display text-3xl leading-[1.15] font-semibold tracking-tight text-text-0 sm:text-4xl lg:text-5xl"
+      />
       {description && (
         <p className="mt-4 text-sm leading-relaxed text-text-1 sm:text-base">{description}</p>
       )}

@@ -1,5 +1,6 @@
 import { Quote } from "lucide-react";
 import { testimonialsData } from "@/data/testimonials";
+import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import { Card } from "@/components/ui/Card";
 import { Heading } from "@/components/ui/Heading";
 import { Section } from "@/components/ui/Section";
@@ -13,13 +14,13 @@ export function TestimonialsSection() {
         description="Các đánh giá dưới đây là dữ liệu mẫu để minh họa bố cục, sẽ được thay thế hoàn toàn bằng phản hồi thật trước khi ra mắt."
       />
 
-      <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
+      <ScrollReveal staggerChildren className="grid grid-cols-1 gap-5 lg:grid-cols-3">
         {testimonialsData.map((item) => (
           <Card
             key={item.id}
             variant="outline"
             padding="md"
-            className="flex flex-col justify-between"
+            className="flex h-full flex-col justify-between"
           >
             <div>
               <Quote className="h-6 w-6 text-accent/70" aria-hidden="true" />
@@ -36,7 +37,7 @@ export function TestimonialsSection() {
             </div>
           </Card>
         ))}
-      </div>
+      </ScrollReveal>
     </Section>
   );
 }

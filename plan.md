@@ -65,16 +65,16 @@
 
 ## Giai đoạn 4 — Cuộn mượt và hoạt ảnh giao diện
 
-- [ ] Tích hợp Lenis đồng bộ với GSAP ScrollTrigger
-- [ ] Text reveal cho tiêu đề
-- [ ] Hiệu ứng xuất hiện section khi cuộn
-- [ ] Counter số ở dải tin cậy
-- [ ] Hover tilt cho thẻ dịch vụ
-- [ ] Magnetic button, con trỏ tùy chỉnh (desktop)
-- [ ] Accordion FAQ mượt
-- [ ] Chuyển cảnh giữa các section
-- [ ] Loading screen
-- [ ] Hỗ trợ `prefers-reduced-motion`
+- [x] Tích hợp Lenis đồng bộ với GSAP ScrollTrigger
+- [x] Text reveal cho tiêu đề
+- [x] Hiệu ứng xuất hiện section khi cuộn
+- [x] Counter số ở dải tin cậy
+- [x] Hover tilt cho thẻ dịch vụ
+- [x] Magnetic button, con trỏ tùy chỉnh (desktop)
+- [x] Accordion FAQ mượt
+- [x] Chuyển cảnh giữa các section
+- [x] Loading screen
+- [x] Hỗ trợ `prefers-reduced-motion`
 
 **Xong khi**: trang có "cảm giác cao cấp" khi cuộn, không giật.
 

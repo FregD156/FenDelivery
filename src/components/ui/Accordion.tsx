@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { ChevronDown } from "lucide-react";
+import { MOTION } from "@/components/motion/constants";
 import { cn } from "@/lib/utils";
 
 export interface AccordionEntry {
@@ -19,7 +21,7 @@ export function Accordion({ items, defaultOpenId }: AccordionProps) {
   const [openId, setOpenId] = useState<string | null>(defaultOpenId ?? items[0]?.id ?? null);
 
   return (
-    <div className="divide-y divide-line rounded-[var(--radius-card)] border border-line bg-bg-1/70">
+    <div className="divide-y divide-line overflow-hidden rounded-[var(--radius-card)] border border-line bg-bg-1/70">
       {items.map((item) => {
         const isOpen = openId === item.id;
         return (
@@ -41,15 +43,24 @@ export function Accordion({ items, defaultOpenId }: AccordionProps) {
                 aria-hidden="true"
               />
             </button>
-            <div
-              id={`accordion-panel-${item.id}`}
-              role="region"
-              aria-labelledby={`accordion-trigger-${item.id}`}
-              hidden={!isOpen}
-              className="px-6 pb-6 text-sm leading-relaxed text-text-1 sm:px-8 sm:text-base"
-            >
-              {item.answer}
-            </div>
+            <AnimatePresence initial={false}>
+              {isOpen && (
+                <motion.div
+                  id={`accordion-panel-${item.id}`}
+                  role="region"
+                  aria-labelledby={`accordion-trigger-${item.id}`}
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.35, ease: MOTION.ease.smooth }}
+                  className="overflow-hidden"
+                >
+                  <div className="px-6 pb-6 text-sm leading-relaxed text-text-1 sm:px-8 sm:text-base">
+                    {item.answer}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         );
       })}

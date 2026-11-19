@@ -1,5 +1,8 @@
 import { ArrowDownRight, ArrowRight, ShieldCheck } from "lucide-react";
 import { siteConfig } from "@/data/site";
+import { MagneticButton } from "@/components/motion/MagneticButton";
+import { ScrollReveal } from "@/components/motion/ScrollReveal";
+import { TextReveal } from "@/components/motion/TextReveal";
 import { Button } from "@/components/ui/Button";
 
 export function HeroSection() {
@@ -8,7 +11,7 @@ export function HeroSection() {
       id="hero"
       className="relative flex min-h-[92vh] w-full items-center overflow-hidden bg-bg-0 pt-28 pb-20 sm:pt-36 sm:pb-28"
     >
-      {/* Subtle atmospheric glow (replaced/augmented by 3D scene in Phase 5) */}
+      {/* Subtle atmospheric glow (augmented by 3D scene in Phase 5) */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_70%_40%,var(--accent-soft),transparent_70%)]"
@@ -24,24 +27,36 @@ export function HeroSection() {
             </span>
           </div>
 
-          <h1 className="font-display text-5xl leading-[1.06] font-semibold tracking-tight text-text-0 sm:text-6xl lg:text-7xl">
-            {siteConfig.brand.slogan}
-          </h1>
+          <TextReveal
+            as="h1"
+            text={siteConfig.brand.slogan}
+            triggerOnScroll={false}
+            delay={0.12}
+            className="font-display text-5xl leading-[1.06] font-semibold tracking-tight text-text-0 sm:text-6xl lg:text-7xl"
+          />
 
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-text-1 sm:text-lg lg:text-xl">
-            {siteConfig.brand.tagline}
-          </p>
+          <ScrollReveal delay={0.22} y={18}>
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-text-1 sm:text-lg lg:text-xl">
+              {siteConfig.brand.tagline}
+            </p>
+          </ScrollReveal>
 
-          <div className="mt-9 flex flex-col gap-3.5 sm:flex-row sm:items-center">
-            <Button href="#lien-he" size="lg">
-              <span>{siteConfig.cta.primary}</span>
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Button>
-            <Button href="#quy-trinh" variant="secondary" size="lg">
-              <span>{siteConfig.cta.secondary}</span>
-              <ArrowDownRight className="h-4 w-4" aria-hidden="true" />
-            </Button>
-          </div>
+          <ScrollReveal delay={0.32} y={18}>
+            <div className="mt-9 flex flex-col gap-3.5 sm:flex-row sm:items-center">
+              <MagneticButton>
+                <Button href="#lien-he" size="lg" className="w-full sm:w-auto">
+                  <span>{siteConfig.cta.primary}</span>
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Button>
+              </MagneticButton>
+              <MagneticButton>
+                <Button href="#quy-trinh" variant="secondary" size="lg" className="w-full sm:w-auto">
+                  <span>{siteConfig.cta.secondary}</span>
+                  <ArrowDownRight className="h-4 w-4" aria-hidden="true" />
+                </Button>
+              </MagneticButton>
+            </div>
+          </ScrollReveal>
 
           <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-line/70 pt-6 text-xs text-text-2 sm:text-sm">
             <span className="inline-flex items-center gap-2 text-text-1">
@@ -53,7 +68,7 @@ export function HeroSection() {
         </div>
 
         {/* 3D Stage Frame (placeholder backdrop until Phase 5 R3F Canvas) */}
-        <div className="lg:col-span-5">
+        <ScrollReveal delay={0.28} y={24} className="lg:col-span-5">
           <div className="glass-panel relative flex aspect-[4/4.3] w-full flex-col justify-between overflow-hidden rounded-[var(--radius-card-lg)] p-6 sm:p-8">
             <div className="flex items-center justify-between text-xs text-text-2">
               <span className="tracking-[0.2em] uppercase">Không gian 3D</span>
@@ -81,7 +96,7 @@ export function HeroSection() {
               <span className="text-text-1">Phục vụ toàn Hà Nội</span>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );
