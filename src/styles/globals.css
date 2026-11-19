@@ -15,8 +15,8 @@
   --font-display: var(--font-playfair-display), Georgia, serif;
   --font-sans: var(--font-be-vietnam-pro), system-ui, -apple-system, sans-serif;
 
-  --radius-card: var(--radius-card);
-  --radius-card-lg: var(--radius-card-lg);
+  --radius-card: 0px;
+  --radius-card-lg: 0px;
 }
 
 html {
@@ -39,9 +39,86 @@ body {
   color: var(--text-0);
 }
 
+/* Hexagonal & Chamfered Geometry System (Zero Border-Radius) */
+.clip-chamfer-lg {
+  clip-path: polygon(
+    var(--cut-lg) 0%,
+    calc(100% - var(--cut-lg)) 0%,
+    100% var(--cut-lg),
+    100% calc(100% - var(--cut-lg)),
+    calc(100% - var(--cut-lg)) 100%,
+    var(--cut-lg) 100%,
+    0% calc(100% - var(--cut-lg)),
+    0% var(--cut-lg)
+  );
+}
+
+.clip-chamfer-md {
+  clip-path: polygon(
+    var(--cut-md) 0%,
+    calc(100% - var(--cut-md)) 0%,
+    100% var(--cut-md),
+    100% calc(100% - var(--cut-md)),
+    calc(100% - var(--cut-md)) 100%,
+    var(--cut-md) 100%,
+    0% calc(100% - var(--cut-md)),
+    0% var(--cut-md)
+  );
+}
+
+.clip-chamfer-sm {
+  clip-path: polygon(
+    var(--cut-sm) 0%,
+    calc(100% - var(--cut-sm)) 0%,
+    100% var(--cut-sm),
+    100% calc(100% - var(--cut-sm)),
+    calc(100% - var(--cut-sm)) 100%,
+    var(--cut-sm) 100%,
+    0% calc(100% - var(--cut-sm)),
+    0% var(--cut-sm)
+  );
+}
+
+/* True 6-sided horizontal hexagon for buttons, pills, badges */
+.clip-hex {
+  clip-path: polygon(
+    11px 0%,
+    calc(100% - 11px) 0%,
+    100% 50%,
+    calc(100% - 11px) 100%,
+    11px 100%,
+    0% 50%
+  );
+}
+
+/* True regular hexagon for square icon containers, dots, reticles */
+.clip-hex-icon {
+  clip-path: polygon(25% 4%, 75% 4%, 100% 50%, 75% 96%, 25% 96%, 0% 50%);
+}
+
+/* Chamfered border frame utility (1px continuous border along diagonal cuts) */
+.hex-border-sm {
+  position: relative;
+  background-color: var(--line);
+  padding: 1px;
+  clip-path: polygon(
+    var(--cut-sm) 0%,
+    calc(100% - var(--cut-sm)) 0%,
+    100% var(--cut-sm),
+    100% calc(100% - var(--cut-sm)),
+    calc(100% - var(--cut-sm)) 100%,
+    var(--cut-sm) 100%,
+    0% calc(100% - var(--cut-sm)),
+    0% var(--cut-sm)
+  );
+}
+
+.hex-border-sm:focus-within {
+  background-color: var(--accent);
+}
+
 .glass-panel {
   background-color: var(--glass-bg);
-  border: 1px solid var(--glass-border);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }

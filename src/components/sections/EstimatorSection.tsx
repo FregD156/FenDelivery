@@ -38,7 +38,11 @@ export function EstimatorSection() {
 
   const toggleCategory = (id: string) => {
     setSelectedIds((prev) =>
-      prev.includes(id) ? (prev.length > 1 ? prev.filter((item) => item !== id) : prev) : [...prev, id]
+      prev.includes(id)
+        ? prev.length > 1
+          ? prev.filter((item) => item !== id)
+          : prev
+        : [...prev, id]
     );
   };
 
@@ -130,27 +134,40 @@ export function EstimatorSection() {
                 aria-selected={isActive}
                 onClick={() => setStep(num)}
                 className={cn(
-                  "flex items-center gap-2.5 rounded-xl border px-3 py-2.5 text-left transition-all cursor-pointer sm:px-4",
+                  "clip-chamfer-sm p-[1px] text-left transition-colors cursor-pointer",
                   isActive
-                    ? "border-accent bg-accent-soft text-text-0"
+                    ? "bg-accent"
                     : isCompleted
-                      ? "border-line bg-bg-1 text-text-0 hover:border-accent/40"
-                      : "border-line/60 bg-bg-1/50 text-text-2 hover:text-text-1"
+                      ? "bg-line hover:bg-accent/50"
+                      : "bg-line/60 hover:bg-line"
                 )}
               >
                 <span
                   className={cn(
-                    "flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-semibold",
+                    "clip-chamfer-sm flex items-center gap-2.5 px-3 py-2.5 sm:px-4",
                     isActive
-                      ? "bg-accent text-bg-0"
+                      ? "bg-bg-2 text-text-0"
                       : isCompleted
-                        ? "bg-accent/20 text-accent"
-                        : "bg-bg-2 text-text-2"
+                        ? "bg-bg-1 text-text-0"
+                        : "bg-bg-1/70 text-text-2 hover:text-text-1"
                   )}
                 >
-                  {isCompleted ? <Check className="h-3.5 w-3.5" aria-hidden="true" /> : num}
+                  <span
+                    className={cn(
+                      "clip-hex-icon flex h-6 w-7 shrink-0 items-center justify-center text-xs font-semibold",
+                      isActive
+                        ? "bg-accent text-bg-0"
+                        : isCompleted
+                          ? "bg-accent/25 text-accent"
+                          : "bg-bg-2 text-text-2"
+                    )}
+                  >
+                    {isCompleted ? <Check className="h-3.5 w-3.5" aria-hidden="true" /> : num}
+                  </span>
+                  <span className="truncate text-xs font-medium sm:text-sm">
+                    {STEP_LABELS[num]}
+                  </span>
                 </span>
-                <span className="truncate text-xs font-medium sm:text-sm">{STEP_LABELS[num]}</span>
               </button>
             );
           })}
@@ -172,25 +189,34 @@ export function EstimatorSection() {
                     aria-pressed={isSelected}
                     onClick={() => toggleCategory(cat.id)}
                     className={cn(
-                      "flex items-center justify-between rounded-2xl border px-4 py-3.5 text-left transition-all cursor-pointer",
-                      isSelected
-                        ? "border-accent bg-accent-soft text-text-0"
-                        : "border-line bg-bg-1/70 text-text-1 hover:border-accent/40 hover:text-text-0"
+                      "clip-chamfer-sm p-[1px] text-left transition-colors cursor-pointer",
+                      isSelected ? "bg-accent" : "bg-line hover:bg-accent/45"
                     )}
                   >
-                    <div>
-                      <p className="text-sm font-medium text-text-0">{cat.label}</p>
-                      <p className="mt-0.5 text-xs text-text-2">Đơn vị tính: {cat.unit}</p>
-                    </div>
                     <span
                       className={cn(
-                        "flex h-5 w-5 shrink-0 items-center justify-center rounded-full border",
+                        "clip-chamfer-sm flex items-center justify-between px-4 py-3.5",
                         isSelected
-                          ? "border-accent bg-accent text-bg-0"
-                          : "border-line bg-bg-0 text-transparent"
+                          ? "bg-bg-2 text-text-0"
+                          : "bg-bg-1/85 text-text-1 hover:text-text-0"
                       )}
                     >
-                      <Check className="h-3 w-3" aria-hidden="true" />
+                      <span>
+                        <span className="block text-sm font-medium text-text-0">{cat.label}</span>
+                        <span className="mt-0.5 block text-xs text-text-2">
+                          Đơn vị tính: {cat.unit}
+                        </span>
+                      </span>
+                      <span
+                        className={cn(
+                          "clip-hex-icon flex h-5 w-6 shrink-0 items-center justify-center",
+                          isSelected
+                            ? "bg-accent text-bg-0"
+                            : "bg-bg-0 text-transparent"
+                        )}
+                      >
+                        <Check className="h-3 w-3" aria-hidden="true" />
+                      </span>
                     </span>
                   </button>
                 );
@@ -215,9 +241,11 @@ export function EstimatorSection() {
                   type="button"
                   aria-label="Giảm số lượng"
                   onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-bg-1 text-text-0 hover:border-accent cursor-pointer"
+                  className="clip-hex-icon flex h-10 w-11 bg-line p-[1px] hover:bg-accent cursor-pointer"
                 >
-                  <Minus className="h-4 w-4" aria-hidden="true" />
+                  <span className="clip-hex-icon flex h-full w-full items-center justify-center bg-bg-1 text-text-0">
+                    <Minus className="h-4 w-4" aria-hidden="true" />
+                  </span>
                 </button>
                 <input
                   id="estimator-qty"
@@ -232,9 +260,11 @@ export function EstimatorSection() {
                   type="button"
                   aria-label="Tăng số lượng"
                   onClick={() => setQuantity((q) => Math.min(200, q + 1))}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-bg-1 text-text-0 hover:border-accent cursor-pointer"
+                  className="clip-hex-icon flex h-10 w-11 bg-line p-[1px] hover:bg-accent cursor-pointer"
                 >
-                  <Plus className="h-4 w-4" aria-hidden="true" />
+                  <span className="clip-hex-icon flex h-full w-full items-center justify-center bg-bg-1 text-text-0">
+                    <Plus className="h-4 w-4" aria-hidden="true" />
+                  </span>
                 </button>
               </div>
               <p className="mt-1.5 text-xs text-text-2">
@@ -254,14 +284,21 @@ export function EstimatorSection() {
                       aria-pressed={isSelected}
                       onClick={() => setConditionId(cond.id)}
                       className={cn(
-                        "rounded-2xl border p-4 text-left transition-all cursor-pointer",
-                        isSelected
-                          ? "border-accent bg-accent-soft"
-                          : "border-line bg-bg-1/70 hover:border-accent/40"
+                        "clip-chamfer-sm p-[1px] text-left transition-colors cursor-pointer",
+                        isSelected ? "bg-accent" : "bg-line hover:bg-accent/45"
                       )}
                     >
-                      <p className="text-sm font-semibold text-text-0">{cond.label}</p>
-                      <p className="mt-1 text-xs text-text-1">{cond.description}</p>
+                      <span
+                        className={cn(
+                          "clip-chamfer-sm block p-4",
+                          isSelected ? "bg-bg-2" : "bg-bg-1/85"
+                        )}
+                      >
+                        <span className="block text-sm font-semibold text-text-0">
+                          {cond.label}
+                        </span>
+                        <span className="mt-1 block text-xs text-text-1">{cond.description}</span>
+                      </span>
                     </button>
                   );
                 })}
@@ -280,18 +317,20 @@ export function EstimatorSection() {
               >
                 Khu vực tại Hà Nội
               </label>
-              <select
-                id="estimator-district"
-                value={district}
-                onChange={(e) => setDistrict(e.target.value)}
-                className="w-full rounded-xl border border-line bg-bg-0/90 px-4 py-3 text-sm text-text-0 focus:border-accent focus:outline-none"
-              >
-                {siteConfig.hanoiDistricts.map((d) => (
-                  <option key={d} value={d}>
-                    {d}
-                  </option>
-                ))}
-              </select>
+              <div className="hex-border-sm">
+                <select
+                  id="estimator-district"
+                  value={district}
+                  onChange={(e) => setDistrict(e.target.value)}
+                  className="clip-chamfer-sm w-full bg-bg-0 px-4 py-3 text-sm text-text-0 focus:outline-none"
+                >
+                  {siteConfig.hanoiDistricts.map((d) => (
+                    <option key={d} value={d}>
+                      {d}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
 
             <div>
@@ -306,14 +345,19 @@ export function EstimatorSection() {
                       aria-pressed={isSelected}
                       onClick={() => setPickupWindowId(win.id)}
                       className={cn(
-                        "flex w-full items-center justify-between rounded-xl border px-4 py-2.5 text-left text-sm transition-all cursor-pointer",
-                        isSelected
-                          ? "border-accent bg-accent-soft text-text-0"
-                          : "border-line bg-bg-1/70 text-text-1 hover:border-accent/40"
+                        "clip-chamfer-sm block w-full p-[1px] text-left transition-colors cursor-pointer",
+                        isSelected ? "bg-accent" : "bg-line hover:bg-accent/45"
                       )}
                     >
-                      <span>{win.label}</span>
-                      {isSelected && <Check className="h-4 w-4 text-accent" aria-hidden="true" />}
+                      <span
+                        className={cn(
+                          "clip-chamfer-sm flex w-full items-center justify-between px-4 py-2.5 text-sm",
+                          isSelected ? "bg-bg-2 text-text-0" : "bg-bg-1/85 text-text-1"
+                        )}
+                      >
+                        <span>{win.label}</span>
+                        {isSelected && <Check className="h-4 w-4 text-accent" aria-hidden="true" />}
+                      </span>
                     </button>
                   );
                 })}
@@ -349,29 +393,33 @@ export function EstimatorSection() {
         </div>
 
         {/* Live Estimate Result Panel */}
-        <div className="mt-6 flex flex-col items-start justify-between gap-6 rounded-2xl border border-accent/30 bg-bg-1 p-6 sm:flex-row sm:items-center">
-          <div className="flex items-start gap-4">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-accent/30 bg-accent-soft text-accent">
-              <Calculator className="h-5 w-5" aria-hidden="true" />
+        <div className="clip-chamfer-md mt-6 bg-accent/45 p-[1px]">
+          <div className="clip-chamfer-md flex flex-col items-start justify-between gap-6 bg-bg-1 p-6 sm:flex-row sm:items-center">
+            <div className="flex items-start gap-4">
+              <div className="clip-hex-icon h-11 w-12 shrink-0 bg-accent/50 p-[1px]">
+                <div className="clip-hex-icon flex h-full w-full items-center justify-center bg-bg-2 text-accent">
+                  <Calculator className="h-5 w-5" aria-hidden="true" />
+                </div>
+              </div>
+              <div>
+                <p className="text-xs tracking-wider text-text-2 uppercase">
+                  Khoảng giá tham khảo ({selectedCategories.length} hạng mục · SL {quantity} ·{" "}
+                  {activeCondition?.label})
+                </p>
+                <p className="mt-1 font-display text-2xl font-semibold text-accent sm:text-3xl">
+                  {estimatedRangeText}
+                </p>
+                <p className="mt-1 text-xs text-text-1">
+                  Khu vực: {district} · {activePickupWindow?.label}
+                </p>
+              </div>
             </div>
-            <div>
-              <p className="text-xs tracking-wider text-text-2 uppercase">
-                Khoảng giá tham khảo ({selectedCategories.length} hạng mục · SL {quantity} ·{" "}
-                {activeCondition?.label})
-              </p>
-              <p className="mt-1 font-display text-2xl font-semibold text-accent sm:text-3xl">
-                {estimatedRangeText}
-              </p>
-              <p className="mt-1 text-xs text-text-1">
-                Khu vực: {district} · {activePickupWindow?.label}
-              </p>
-            </div>
-          </div>
 
-          <Button onClick={handleSendToQuoteForm} size="lg" className="w-full shrink-0 sm:w-auto">
-            <span>Gửi báo giá chính xác</span>
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </Button>
+            <Button onClick={handleSendToQuoteForm} size="lg" className="w-full shrink-0 sm:w-auto">
+              <span>Gửi báo giá chính xác</span>
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Button>
+          </div>
         </div>
 
         <p className="mt-4 flex items-start gap-2 text-xs leading-relaxed text-text-2">

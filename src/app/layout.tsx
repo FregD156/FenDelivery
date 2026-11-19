@@ -64,7 +64,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-bg-0 text-text-0 font-sans antialiased">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[120] focus:rounded-full focus:bg-accent focus:px-4 focus:py-2 focus:text-xs focus:font-semibold focus:text-bg-0"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[120] focus:clip-hex focus:bg-accent focus:px-5 focus:py-2 focus:text-xs focus:font-semibold focus:text-bg-0"
         >
           Chuyển tới nội dung chính
         </a>

@@ -65,12 +65,14 @@ export function CustomCursor() {
       <div
         ref={ringRef}
         aria-hidden="true"
-        className="pointer-events-none fixed top-0 left-0 z-[90] -mt-4 -ml-4 h-8 w-8 rounded-full border border-text-0/35 opacity-0 will-change-transform"
-      />
+        className="clip-hex-icon pointer-events-none fixed top-0 left-0 z-[90] -mt-4 -ml-4 flex h-8 w-9 items-center justify-center bg-text-0/45 p-[1.5px] opacity-0 will-change-transform"
+      >
+        <div className="clip-hex-icon h-full w-full bg-bg-0/20" />
+      </div>
       <div
         ref={dotRef}
         aria-hidden="true"
-        className="pointer-events-none fixed top-0 left-0 z-[90] -mt-1 -ml-1 h-2 w-2 rounded-full bg-accent opacity-0 will-change-transform"
+        className="clip-hex-icon pointer-events-none fixed top-0 left-0 z-[90] -mt-1 -ml-1 h-2 w-2.5 bg-accent opacity-0 will-change-transform"
       />
     </>
   );

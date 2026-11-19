@@ -15,13 +15,16 @@
   --accent-soft: #c8b28a22;
 
   /* Glassmorphism */
-  --glass-bg: rgba(26, 26, 29, 0.6);
-  --glass-border: rgba(244, 244, 245, 0.08);
+  --glass-bg: rgba(20, 20, 23, 0.78);
+  --glass-border: rgba(244, 244, 245, 0.14);
 
-  /* Radii */
-  --radius-card: 20px;
-  --radius-card-lg: 24px;
-  --radius-pill: 9999px;
+  /* Geometric Chamfer & Hexagon Cuts (Zero rounded corners) */
+  --cut-sm: 8px;
+  --cut-md: 12px;
+  --cut-lg: 18px;
+  --radius-card: 0px;
+  --radius-card-lg: 0px;
+  --radius-pill: 0px;
 
   /* Layout */
   --container-max: 1280px;

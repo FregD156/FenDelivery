@@ -11,7 +11,7 @@ export function Footer() {
               <span className="font-display text-2xl font-semibold text-text-0">
                 {siteConfig.brand.name}
               </span>
-              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+              <span className="clip-hex-icon h-2 w-2 bg-accent" />
             </a>
             <p className="mt-3 font-display text-lg text-accent italic">
               &ldquo;{siteConfig.brand.slogan}&rdquo;

@@ -24,18 +24,24 @@ export function ProjectsSection() {
               className="group h-full overflow-hidden hover:border-accent/40"
             >
               {/* Placeholder visual frame */}
-              <div className="relative flex aspect-[16/10] w-full items-end overflow-hidden rounded-2xl border border-line bg-bg-0 p-5">
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,var(--accent-soft),transparent_65%)]"
-                />
-                <div className="relative flex w-full items-center justify-between gap-2">
-                  <span className="rounded-full border border-line bg-bg-1/90 px-3 py-1 text-xs text-text-1">
-                    {project.category}
-                  </span>
-                  <span className="rounded-full border border-accent/30 bg-bg-1/90 px-3 py-1 text-[11px] text-accent">
-                    Ảnh dự án mẫu
-                  </span>
+              <div className="clip-chamfer-md bg-line p-[1px]">
+                <div className="clip-chamfer-md relative flex aspect-[16/10] w-full items-end overflow-hidden bg-bg-0 p-5">
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,var(--accent-soft),transparent_65%)]"
+                  />
+                  <div className="relative flex w-full items-center justify-between gap-2">
+                    <span className="clip-hex bg-line p-[1px]">
+                      <span className="clip-hex block bg-bg-1/95 px-3.5 py-1 text-xs text-text-1">
+                        {project.category}
+                      </span>
+                    </span>
+                    <span className="clip-hex bg-accent/45 p-[1px]">
+                      <span className="clip-hex block bg-bg-1/95 px-3.5 py-1 text-[11px] text-accent">
+                        Ảnh dự án mẫu
+                      </span>
+                    </span>
+                  </div>
                 </div>
               </div>
 

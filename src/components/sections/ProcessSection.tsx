@@ -44,21 +44,26 @@ export function ProcessSection() {
                   <div
                     key={phase.label}
                     className={cn(
-                      "flex items-center justify-between rounded-xl border px-3.5 py-2.5 text-xs transition-colors duration-300",
-                      isActive
-                        ? "border-accent/50 bg-accent-soft text-text-0"
-                        : "border-line/70 bg-bg-0/40 text-text-2"
+                      "clip-chamfer-sm p-[1px] transition-colors duration-300",
+                      isActive ? "bg-accent/60" : "bg-line/70"
                     )}
                   >
-                    <span>
-                      0{idx + 1}. {phase.label}
-                    </span>
-                    <span
+                    <div
                       className={cn(
-                        "h-1.5 w-1.5 rounded-full",
-                        isActive ? "bg-accent" : "bg-line"
+                        "clip-chamfer-sm flex items-center justify-between px-3.5 py-2.5 text-xs transition-colors duration-300",
+                        isActive ? "bg-bg-1 text-text-0" : "bg-bg-0/80 text-text-2"
                       )}
-                    />
+                    >
+                      <span>
+                        0{idx + 1}. {phase.label}
+                      </span>
+                      <span
+                        className={cn(
+                          "clip-hex-icon h-2 w-2",
+                          isActive ? "bg-accent" : "bg-line"
+                        )}
+                      />
+                    </div>
                   </div>
                 );
               })}

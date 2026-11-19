@@ -7,10 +7,16 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
   padding?: "sm" | "md" | "lg";
 }
 
-const variantClasses = {
+const outerVariantClasses = {
+  glass: "bg-line/85 hover:bg-accent/50",
+  solid: "bg-line hover:bg-accent/55",
+  outline: "bg-line/80 hover:bg-accent/50",
+};
+
+const innerVariantClasses = {
   glass: "glass-panel",
-  solid: "bg-bg-2 border border-line",
-  outline: "bg-bg-1/50 border border-line",
+  solid: "bg-bg-2",
+  outline: "bg-bg-1/90",
 };
 
 const paddingClasses = {
@@ -29,14 +35,21 @@ export function Card({
   return (
     <div
       className={cn(
-        "rounded-[var(--radius-card)] transition-colors duration-300",
-        variantClasses[variant],
-        paddingClasses[padding],
-        className
+        "clip-chamfer-lg p-[1px] transition-colors duration-300",
+        outerVariantClasses[variant]
       )}
       {...props}
     >
-      {children}
+      <div
+        className={cn(
+          "clip-chamfer-lg h-full w-full",
+          innerVariantClasses[variant],
+          paddingClasses[padding],
+          className
+        )}
+      >
+        {children}
+      </div>
     </div>
   );
 }

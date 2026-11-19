@@ -58,8 +58,10 @@ export function ServicesSection() {
               >
                 <div>
                   <div className="mb-6 flex items-center justify-between">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-line bg-bg-1 text-accent transition-colors group-hover:border-accent/40">
-                      <Icon className="h-5 w-5" aria-hidden="true" />
+                    <div className="clip-hex-icon h-11 w-12 bg-line p-[1px] transition-colors group-hover:bg-accent/60">
+                      <div className="clip-hex-icon flex h-full w-full items-center justify-center bg-bg-1 text-accent">
+                        <Icon className="h-5 w-5" aria-hidden="true" />
+                      </div>
                     </div>
                     <ArrowUpRight
                       className="h-4 w-4 text-text-2 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
@@ -76,7 +78,7 @@ export function ServicesSection() {
                 <ul className="mt-6 space-y-1.5 border-t border-line/70 pt-4 text-xs text-text-2">
                   {service.examples.map((example) => (
                     <li key={example} className="flex items-center gap-2">
-                      <span className="h-1 w-1 rounded-full bg-accent/80" />
+                      <span className="clip-hex-icon h-1.5 w-1.5 bg-accent/80" />
                       <span>{example}</span>
                     </li>
                   ))}

@@ -115,9 +115,11 @@ export function LoadingScreen() {
             <button
               type="button"
               onClick={handleSkip}
-              className="mt-8 rounded-full border border-line px-4 py-1.5 text-xs text-text-1 transition-colors hover:border-accent/50 hover:text-text-0 cursor-pointer"
+              className="clip-hex mt-8 bg-line p-[1px] transition-colors hover:bg-accent/60 cursor-pointer"
             >
-              Bỏ qua
+              <span className="clip-hex block bg-bg-0 px-5 py-1.5 text-xs text-text-1 transition-colors hover:text-text-0">
+                Bỏ qua
+              </span>
             </button>
           </motion.div>
         </motion.div>

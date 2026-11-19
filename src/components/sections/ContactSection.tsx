@@ -44,6 +44,9 @@ interface SubmitFeedback {
   message: string;
 }
 
+const fieldInputClass =
+  "clip-chamfer-sm w-full bg-bg-0 px-4 py-3 text-sm text-text-0 placeholder:text-text-2 focus:outline-none";
+
 export function ContactSection() {
   const estimatorPrefill = useSceneStore((s) => s.estimatorPrefill);
   const setEstimatorPrefill = useSceneStore((s) => s.setEstimatorPrefill);
@@ -77,7 +80,6 @@ export function ContactSection() {
     },
   });
 
-  // Sync estimator data into quote form when user clicks "Gửi báo giá chính xác"
   useEffect(() => {
     if (!estimatorPrefill) return;
     const furnitureSummary = estimatorPrefill.categories.join(", ");
@@ -95,7 +97,6 @@ export function ContactSection() {
     );
   }, [estimatorPrefill, setValue]);
 
-  // Revoke object URLs on unmount
   useEffect(() => {
     return () => {
       images.forEach((item) => URL.revokeObjectURL(item.url));
@@ -312,22 +313,24 @@ export function ContactSection() {
         {/* Interactive Quote Form */}
         <Card variant="glass" padding="lg" className="lg:col-span-7">
           {estimatorPrefill && (
-            <div className="mb-6 flex items-start justify-between gap-3 rounded-2xl border border-accent/40 bg-accent-soft px-4 py-3 text-xs text-text-0">
-              <div className="flex items-start gap-2.5">
-                <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
-                <p>
-                  Đã tự động điền thông tin từ công cụ ước tính giá. Bạn chỉ cần bổ sung họ tên, số
-                  điện thoại và ảnh thực tế.
-                </p>
+            <div className="clip-chamfer-sm mb-6 bg-accent/50 p-[1px]">
+              <div className="clip-chamfer-sm flex items-start justify-between gap-3 bg-bg-1 px-4 py-3 text-xs text-text-0">
+                <div className="flex items-start gap-2.5">
+                  <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
+                  <p>
+                    Đã tự động điền thông tin từ công cụ ước tính giá. Bạn chỉ cần bổ sung họ tên,
+                    số điện thoại và ảnh thực tế.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  aria-label="Ẩn thông báo điền tự động"
+                  onClick={() => setEstimatorPrefill(null)}
+                  className="text-text-1 hover:text-text-0 cursor-pointer"
+                >
+                  <X className="h-4 w-4" aria-hidden="true" />
+                </button>
               </div>
-              <button
-                type="button"
-                aria-label="Ẩn thông báo điền tự động"
-                onClick={() => setEstimatorPrefill(null)}
-                className="text-text-1 hover:text-text-0 cursor-pointer"
-              >
-                <X className="h-4 w-4" aria-hidden="true" />
-              </button>
             </div>
           )}
 
@@ -337,17 +340,31 @@ export function ContactSection() {
               aria-live="polite"
               className={
                 feedback.type === "success"
-                  ? "mb-6 flex items-start gap-3 rounded-2xl border border-accent/50 bg-accent-soft p-4 text-sm text-text-0"
-                  : "mb-6 flex items-start gap-3 rounded-2xl border border-red-500/40 bg-red-500/10 p-4 text-sm text-red-200"
+                  ? "clip-chamfer-sm mb-6 bg-accent/60 p-[1px]"
+                  : "clip-chamfer-sm mb-6 bg-red-500/50 p-[1px]"
               }
             >
-              {feedback.type === "success" ? (
-                <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
-              ) : (
-                <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-400" aria-hidden="true" />
-              )}
-              <div className="flex-1">
-                <p className="leading-relaxed">{feedback.message}</p>
+              <div
+                className={
+                  feedback.type === "success"
+                    ? "clip-chamfer-sm flex items-start gap-3 bg-bg-1 p-4 text-sm text-text-0"
+                    : "clip-chamfer-sm flex items-start gap-3 bg-bg-1 p-4 text-sm text-red-200"
+                }
+              >
+                {feedback.type === "success" ? (
+                  <CheckCircle2
+                    className="mt-0.5 h-5 w-5 shrink-0 text-accent"
+                    aria-hidden="true"
+                  />
+                ) : (
+                  <AlertCircle
+                    className="mt-0.5 h-5 w-5 shrink-0 text-red-400"
+                    aria-hidden="true"
+                  />
+                )}
+                <div className="flex-1">
+                  <p className="leading-relaxed">{feedback.message}</p>
+                </div>
               </div>
             </div>
           )}
@@ -375,15 +392,17 @@ export function ContactSection() {
                 <label htmlFor="fullName" className="mb-2 block text-xs font-medium text-text-1">
                   Họ và tên <span className="text-accent">*</span>
                 </label>
-                <input
-                  id="fullName"
-                  type="text"
-                  autoComplete="name"
-                  placeholder="Nguyễn Văn A"
-                  aria-invalid={Boolean(errors.fullName)}
-                  {...register("fullName")}
-                  className="w-full rounded-xl border border-line bg-bg-0/80 px-4 py-3 text-sm text-text-0 placeholder:text-text-2 focus:border-accent focus:outline-none"
-                />
+                <div className="hex-border-sm">
+                  <input
+                    id="fullName"
+                    type="text"
+                    autoComplete="name"
+                    placeholder="Nguyễn Văn A"
+                    aria-invalid={Boolean(errors.fullName)}
+                    {...register("fullName")}
+                    className={fieldInputClass}
+                  />
+                </div>
                 {errors.fullName && (
                   <p className="mt-1.5 text-xs text-red-400">{errors.fullName.message}</p>
                 )}
@@ -393,15 +412,17 @@ export function ContactSection() {
                 <label htmlFor="phone" className="mb-2 block text-xs font-medium text-text-1">
                   Số điện thoại <span className="text-accent">*</span>
                 </label>
-                <input
-                  id="phone"
-                  type="tel"
-                  autoComplete="tel"
-                  placeholder="09xx xxx xxx"
-                  aria-invalid={Boolean(errors.phone)}
-                  {...register("phone")}
-                  className="w-full rounded-xl border border-line bg-bg-0/80 px-4 py-3 text-sm text-text-0 placeholder:text-text-2 focus:border-accent focus:outline-none"
-                />
+                <div className="hex-border-sm">
+                  <input
+                    id="phone"
+                    type="tel"
+                    autoComplete="tel"
+                    placeholder="09xx xxx xxx"
+                    aria-invalid={Boolean(errors.phone)}
+                    {...register("phone")}
+                    className={fieldInputClass}
+                  />
+                </div>
                 {errors.phone && (
                   <p className="mt-1.5 text-xs text-red-400">{errors.phone.message}</p>
                 )}
@@ -416,14 +437,16 @@ export function ContactSection() {
                 >
                   Loại khách hàng
                 </label>
-                <select
-                  id="customerType"
-                  {...register("customerType")}
-                  className="w-full rounded-xl border border-line bg-bg-0/80 px-4 py-3 text-sm text-text-0 focus:border-accent focus:outline-none"
-                >
-                  <option value="individual">Cá nhân / Gia đình</option>
-                  <option value="business">Doanh nghiệp / Văn phòng / Cơ sở kinh doanh</option>
-                </select>
+                <div className="hex-border-sm">
+                  <select
+                    id="customerType"
+                    {...register("customerType")}
+                    className={fieldInputClass}
+                  >
+                    <option value="individual">Cá nhân / Gia đình</option>
+                    <option value="business">Doanh nghiệp / Văn phòng / Cơ sở kinh doanh</option>
+                  </select>
+                </div>
               </div>
 
               <div>
@@ -433,15 +456,17 @@ export function ContactSection() {
                 >
                   Loại nội thất <span className="text-accent">*</span>
                 </label>
-                <input
-                  id="furnitureType"
-                  type="text"
-                  list="furniture-category-list"
-                  placeholder="Chọn hoặc nhập loại nội thất..."
-                  aria-invalid={Boolean(errors.furnitureType)}
-                  {...register("furnitureType")}
-                  className="w-full rounded-xl border border-line bg-bg-0/80 px-4 py-3 text-sm text-text-0 placeholder:text-text-2 focus:border-accent focus:outline-none"
-                />
+                <div className="hex-border-sm">
+                  <input
+                    id="furnitureType"
+                    type="text"
+                    list="furniture-category-list"
+                    placeholder="Chọn hoặc nhập loại nội thất..."
+                    aria-invalid={Boolean(errors.furnitureType)}
+                    {...register("furnitureType")}
+                    className={fieldInputClass}
+                  />
+                </div>
                 <datalist id="furniture-category-list">
                   {servicesData.map((s) => (
                     <option key={s.id} value={s.title} />
@@ -458,19 +483,21 @@ export function ContactSection() {
                 <label htmlFor="district" className="mb-2 block text-xs font-medium text-text-1">
                   Quận / Huyện tại Hà Nội <span className="text-accent">*</span>
                 </label>
-                <select
-                  id="district"
-                  aria-invalid={Boolean(errors.district)}
-                  {...register("district")}
-                  className="w-full rounded-xl border border-line bg-bg-0/80 px-4 py-3 text-sm text-text-0 focus:border-accent focus:outline-none"
-                >
-                  <option value="">Chọn quận / huyện</option>
-                  {siteConfig.hanoiDistricts.map((district) => (
-                    <option key={district} value={district}>
-                      {district}
-                    </option>
-                  ))}
-                </select>
+                <div className="hex-border-sm">
+                  <select
+                    id="district"
+                    aria-invalid={Boolean(errors.district)}
+                    {...register("district")}
+                    className={fieldInputClass}
+                  >
+                    <option value="">Chọn quận / huyện</option>
+                    {siteConfig.hanoiDistricts.map((district) => (
+                      <option key={district} value={district}>
+                        {district}
+                      </option>
+                    ))}
+                  </select>
+                </div>
                 {errors.district && (
                   <p className="mt-1.5 text-xs text-red-400">{errors.district.message}</p>
                 )}
@@ -480,13 +507,15 @@ export function ContactSection() {
                 <label htmlFor="quantity" className="mb-2 block text-xs font-medium text-text-1">
                   Số lượng dự kiến
                 </label>
-                <input
-                  id="quantity"
-                  type="text"
-                  placeholder="Ví dụ: 15 bàn ghế, 1 tủ hồ sơ"
-                  {...register("quantity")}
-                  className="w-full rounded-xl border border-line bg-bg-0/80 px-4 py-3 text-sm text-text-0 placeholder:text-text-2 focus:border-accent focus:outline-none"
-                />
+                <div className="hex-border-sm">
+                  <input
+                    id="quantity"
+                    type="text"
+                    placeholder="Ví dụ: 15 bàn ghế, 1 tủ hồ sơ"
+                    {...register("quantity")}
+                    className={fieldInputClass}
+                  />
+                </div>
               </div>
             </div>
 
@@ -495,13 +524,15 @@ export function ContactSection() {
                 <label htmlFor="address" className="mb-2 block text-xs font-medium text-text-1">
                   Địa chỉ cụ thể (tùy chọn)
                 </label>
-                <input
-                  id="address"
-                  type="text"
-                  placeholder="Số nhà, tòa nhà, tuyến phố..."
-                  {...register("address")}
-                  className="w-full rounded-xl border border-line bg-bg-0/80 px-4 py-3 text-sm text-text-0 placeholder:text-text-2 focus:border-accent focus:outline-none"
-                />
+                <div className="hex-border-sm">
+                  <input
+                    id="address"
+                    type="text"
+                    placeholder="Số nhà, tòa nhà, tuyến phố..."
+                    {...register("address")}
+                    className={fieldInputClass}
+                  />
+                </div>
               </div>
 
               <div>
@@ -511,13 +542,15 @@ export function ContactSection() {
                 >
                   Thời gian mong muốn
                 </label>
-                <input
-                  id="preferredTime"
-                  type="text"
-                  placeholder="Ví dụ: Chiều nay hoặc cuối tuần"
-                  {...register("preferredTime")}
-                  className="w-full rounded-xl border border-line bg-bg-0/80 px-4 py-3 text-sm text-text-0 placeholder:text-text-2 focus:border-accent focus:outline-none"
-                />
+                <div className="hex-border-sm">
+                  <input
+                    id="preferredTime"
+                    type="text"
+                    placeholder="Ví dụ: Chiều nay hoặc cuối tuần"
+                    {...register("preferredTime")}
+                    className={fieldInputClass}
+                  />
+                </div>
               </div>
             </div>
 
@@ -525,13 +558,15 @@ export function ContactSection() {
               <label htmlFor="description" className="mb-2 block text-xs font-medium text-text-1">
                 Mô tả hiện trạng &amp; ghi chú
               </label>
-              <textarea
-                id="description"
-                rows={3}
-                placeholder="Mô tả tình trạng đồ, tầng lầu/thang máy hoặc yêu cầu tháo dỡ ngoài giờ..."
-                {...register("description")}
-                className="w-full rounded-xl border border-line bg-bg-0/80 px-4 py-3 text-sm text-text-0 placeholder:text-text-2 focus:border-accent focus:outline-none"
-              />
+              <div className="hex-border-sm">
+                <textarea
+                  id="description"
+                  rows={3}
+                  placeholder="Mô tả tình trạng đồ, tầng lầu/thang máy hoặc yêu cầu tháo dỡ ngoài giờ..."
+                  {...register("description")}
+                  className={fieldInputClass}
+                />
+              </div>
             </div>
 
             {/* Image Upload with Previews */}
@@ -555,18 +590,20 @@ export function ContactSection() {
                 id="quote-images"
               />
 
-              <label
-                htmlFor="quote-images"
-                className="flex cursor-pointer flex-col items-center justify-center rounded-xl border border-dashed border-line bg-bg-0/50 px-4 py-5 text-center transition-colors hover:border-accent/60 hover:bg-bg-0/80"
-              >
-                <Upload className="h-5 w-5 text-accent" aria-hidden="true" />
-                <span className="mt-2 text-xs font-medium text-text-0">
-                  Nhấn để chọn ảnh từ máy hoặc điện thoại
-                </span>
-                <span className="mt-0.5 text-[11px] text-text-2">
-                  Hỗ trợ JPG, PNG, WebP, HEIC
-                </span>
-              </label>
+              <div className="clip-chamfer-sm bg-line p-[1px] transition-colors hover:bg-accent/60">
+                <label
+                  htmlFor="quote-images"
+                  className="clip-chamfer-sm flex cursor-pointer flex-col items-center justify-center bg-bg-0/90 px-4 py-5 text-center transition-colors hover:bg-bg-0"
+                >
+                  <Upload className="h-5 w-5 text-accent" aria-hidden="true" />
+                  <span className="mt-2 text-xs font-medium text-text-0">
+                    Nhấn để chọn ảnh từ máy hoặc điện thoại
+                  </span>
+                  <span className="mt-0.5 text-[11px] text-text-2">
+                    Hỗ trợ JPG, PNG, WebP, HEIC
+                  </span>
+                </label>
+              </div>
 
               {imageError && <p className="mt-1.5 text-xs text-red-400">{imageError}</p>}
 
@@ -575,22 +612,24 @@ export function ContactSection() {
                   {images.map((item, idx) => (
                     <div
                       key={item.url}
-                      className="group relative aspect-square overflow-hidden rounded-xl border border-line bg-bg-0"
+                      className="clip-chamfer-sm group relative aspect-square bg-line p-[1px]"
                     >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={item.url}
-                        alt={`Ảnh nội thất ${idx + 1}`}
-                        className="h-full w-full object-cover"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => handleRemoveImage(idx)}
-                        aria-label={`Xóa ảnh ${idx + 1}`}
-                        className="absolute top-1 right-1 flex h-6 w-6 items-center justify-center rounded-full bg-bg-0/85 text-text-0 transition-colors hover:bg-accent hover:text-bg-0 cursor-pointer"
-                      >
-                        <X className="h-3.5 w-3.5" aria-hidden="true" />
-                      </button>
+                      <div className="clip-chamfer-sm relative h-full w-full overflow-hidden bg-bg-0">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={item.url}
+                          alt={`Ảnh nội thất ${idx + 1}`}
+                          className="h-full w-full object-cover"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveImage(idx)}
+                          aria-label={`Xóa ảnh ${idx + 1}`}
+                          className="clip-hex-icon absolute top-1 right-1 flex h-6 w-7 items-center justify-center bg-bg-0/85 text-text-0 transition-colors hover:bg-accent hover:text-bg-0 cursor-pointer"
+                        >
+                          <X className="h-3.5 w-3.5" aria-hidden="true" />
+                        </button>
+                      </div>
                     </div>
                   ))}
                 </div>

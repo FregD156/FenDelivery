@@ -43,7 +43,7 @@ export function Header() {
             <span className="font-display text-xl font-semibold tracking-tight text-text-0 sm:text-2xl">
               {siteConfig.brand.name}
             </span>
-            <span className="hidden h-1.5 w-1.5 rounded-full bg-accent sm:inline-block" />
+            <span className="clip-hex-icon hidden h-2 w-2 bg-accent sm:inline-block" />
           </a>
 
           {/* Desktop Navigation */}
@@ -78,13 +78,15 @@ export function Header() {
               onClick={() => setMobileMenuOpen((prev) => !prev)}
               aria-label={mobileMenuOpen ? "Đóng menu" : "Mở menu"}
               aria-expanded={mobileMenuOpen}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line bg-bg-2/70 text-text-0 transition-colors hover:border-accent/50 lg:hidden cursor-pointer"
+              className="clip-hex-icon inline-flex h-10 w-11 bg-line p-[1px] transition-colors hover:bg-accent/60 lg:hidden cursor-pointer"
             >
-              {mobileMenuOpen ? (
-                <X className="h-5 w-5" aria-hidden="true" />
-              ) : (
-                <Menu className="h-5 w-5" aria-hidden="true" />
-              )}
+              <span className="clip-hex-icon flex h-full w-full items-center justify-center bg-bg-2 text-text-0">
+                {mobileMenuOpen ? (
+                  <X className="h-4 w-4" aria-hidden="true" />
+                ) : (
+                  <Menu className="h-4 w-4" aria-hidden="true" />
+                )}
+              </span>
             </button>
           </div>
         </div>
@@ -106,9 +108,11 @@ export function Header() {
               type="button"
               onClick={() => setMobileMenuOpen(false)}
               aria-label="Đóng menu"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line bg-bg-2 text-text-0 cursor-pointer"
+              className="clip-hex-icon inline-flex h-10 w-11 bg-line p-[1px] cursor-pointer"
             >
-              <X className="h-5 w-5" aria-hidden="true" />
+              <span className="clip-hex-icon flex h-full w-full items-center justify-center bg-bg-2 text-text-0">
+                <X className="h-4 w-4" aria-hidden="true" />
+              </span>
             </button>
           </div>
 

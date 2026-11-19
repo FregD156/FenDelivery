@@ -24,11 +24,13 @@ export function HeroSection() {
       <div className="relative mx-auto grid w-full max-w-[var(--container-max)] grid-cols-1 items-end gap-12 px-5 sm:px-8 lg:grid-cols-12 lg:items-center lg:gap-10 lg:px-10">
         {/* Editorial Copy */}
         <div className="lg:col-span-7">
-          <div className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-line bg-bg-1/80 px-4 py-1.5 text-xs tracking-wider text-text-1 backdrop-blur-md">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-            <span>
-              {siteConfig.brand.name} · {siteConfig.brand.area} · {siteConfig.brand.hours}
-            </span>
+          <div className="clip-hex mb-6 inline-flex bg-line p-[1px]">
+            <div className="clip-hex inline-flex items-center gap-2.5 bg-bg-1/90 px-5 py-1.5 text-xs tracking-wider text-text-1 backdrop-blur-md">
+              <span className="clip-hex-icon h-2 w-2 bg-accent" />
+              <span>
+                {siteConfig.brand.name} · {siteConfig.brand.area} · {siteConfig.brand.hours}
+              </span>
+            </div>
           </div>
 
           <TextReveal
@@ -73,9 +75,11 @@ export function HeroSection() {
 
         {/* Open 3D Stage Window + Subtle Interactive HUD */}
         <div className="flex min-h-[220px] flex-col justify-end lg:col-span-5 lg:min-h-[460px]">
-          <div className="glass-panel ml-auto inline-flex items-center gap-3 rounded-full px-4 py-2 text-xs text-text-1">
-            <Mouse className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
-            <span>Di chuột &amp; cuộn để xem quy trình 3D</span>
+          <div className="clip-hex ml-auto inline-flex bg-line p-[1px]">
+            <div className="clip-hex glass-panel inline-flex items-center gap-3 px-5 py-2 text-xs text-text-1">
+              <Mouse className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
+              <span>Di chuột &amp; cuộn để xem quy trình 3D</span>
+            </div>
           </div>
         </div>
       </div>
